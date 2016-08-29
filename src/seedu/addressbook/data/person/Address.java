@@ -69,7 +69,7 @@ public class Address {
         		+ this.unitNumber.getUnit() + ", "
         		+ this.postalCode.getPostalCode();
     }
-
+    
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -85,4 +85,9 @@ public class Address {
     public boolean isPrivate() {
         return isPrivate;
     }
+    
+    public String getValue() {
+    	return this.toString();
+    }
+
 }
