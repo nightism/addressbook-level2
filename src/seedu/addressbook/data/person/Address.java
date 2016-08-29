@@ -11,11 +11,22 @@ public class Address {
     public static final String EXAMPLE = "123, some street";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses can be in any format";
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
-
-    public final String value;
+    
+    private static final int ADDRESS_INDEX_BLOCK = 0;
+    private static final int ADDRESS_INDEX_STREET = 1;
+    private static final int ADDRESS_INDEX_UNIT = 2;
+    private static final int ADDRESS_INDEX_POSTAL = 3;
+    
+    //public final String value;
     public final String[] addressComponents;
     private boolean isPrivate;
-
+    
+    // four components of the address line
+    public final Block blockName;
+    public final Street streetName;
+    public final Unit unitNumber;
+    public final PostalCode postalCode;
+    
     /**
      * Validates given address.
      *
@@ -26,12 +37,17 @@ public class Address {
         if (!isValidAddress(address)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
-        this.value = address;
+        //this.value = address;
         
         this.addressComponents = address.split(", ");
         if (!isValidAddress(this.addressComponents)) {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
+        
+        this.blockName = new Block(addressComponents[ADDRESS_INDEX_BLOCK]);
+        this.streetName = new Street(addressComponents[ADDRESS_INDEX_STREET]);
+        this.unitNumber = new Unit(addressComponents[ADDRESS_INDEX_UNIT]);
+        this.postalCode = new PostalCode(addressComponents[ADDRESS_INDEX_POSTAL]);
     }
 
     /**
@@ -48,7 +64,10 @@ public class Address {
 
     @Override
     public String toString() {
-        return value;
+        return this.blockName.getBlock() + ", "
+        		+ this.streetName.getStreet() + ", "
+        		+ this.unitNumber.getUnit() + ", "
+        		+ this.postalCode.getPostalCode();
     }
 
     @Override
