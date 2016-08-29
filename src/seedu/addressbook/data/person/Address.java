@@ -13,6 +13,7 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
+    public final String[] addressComponents;
     private boolean isPrivate;
 
     /**
@@ -26,6 +27,11 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = address;
+        
+        this.addressComponents = address.split(", ");
+        if (!isValidAddress(this.addressComponents)) {
+            throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
+        }
     }
 
     /**
@@ -33,6 +39,11 @@ public class Address {
      */
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
+    }
+    
+    public static boolean isValidAddress(String[] test) {
+    	return test.length == 4 ;
+    	
     }
 
     @Override
