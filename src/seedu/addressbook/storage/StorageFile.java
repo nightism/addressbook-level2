@@ -150,6 +150,17 @@ public class StorageFile {
             throw new StorageOperationException("File contains illegal data values; data type constraints not met");
         }
     }
+    
+    /**
+     * Check the existence of the file
+     *
+     * @throws MissingFileException if the target file does not exist
+     */
+    public void checkFileExistence throws MissingFileException {
+    	if(!new File(this.path.toString()).exists()) {
+    		throw new MissingFileException("Storage file no longer exists");
+    	}
+    }
 
     public String getPath() {
         return path.toString();
