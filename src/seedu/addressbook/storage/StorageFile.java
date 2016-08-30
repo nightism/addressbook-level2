@@ -156,7 +156,7 @@ public class StorageFile {
      *
      * @throws MissingFileException if the target file does not exist
      */
-    public void checkFileExistence throws MissingFileException {
+    public void checkFileExistence () throws MissingFileException {
     	if(!new File(this.path.toString()).exists()) {
     		throw new MissingFileException("Storage file no longer exists");
     	}
