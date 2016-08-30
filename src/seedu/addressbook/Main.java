@@ -80,6 +80,16 @@ public class Main {
     private void runCommandLoopUntilExitCommand() {
         Command command;
         do {
+            // check whether the storage file still exist
+        	try {
+            	this.storage.checkFileExistence();
+         		} catch (MissingFileException error) {
+         				ui.showToUser(error.getMessage());
+         				
+         				//if the file is missing just simply terminate the program
+         				exit();
+         		}
+
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);
