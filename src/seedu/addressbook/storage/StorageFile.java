@@ -42,6 +42,16 @@ public class StorageFile {
             super(message);
         }
     }
+    
+    /**
+     * Signals that file does not exist or has been deleted
+     */
+    public static class MissingFileException extends Exception {
+    	public MissingFileException(String message) {
+    		super(message);
+    	}
+    	
+    }
 
     private final JAXBContext jaxbContext;
 
