@@ -17,24 +17,26 @@ import java.util.Scanner;
  * Text UI of the application.
  */
 public class TextUi {
-
+ // marked as attribute of formatter
     /** A decorative prefix added to the beginning of lines printed by AddressBook */
     private static final String LINE_PREFIX = "|| ";
-
+ // marked as attribute of formatter
     /** A platform independent line separator. */
     private static final String LS = System.lineSeparator();
-
+ // marked as attribute of formatter
     private static final String DIVIDER = "===================================================";
-
+ // marked as attribute of formatter
     /** Format of indexed list item */
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
 
-
+ // marked as attribute of formatter
     /** Offset required to convert between 1-indexing and 0-indexing.  */
     public static final int DISPLAYED_INDEX_OFFSET = 1;
-
+ // marked as attribute of formatter
     /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
+    
+    private static final Formatter formatting = new Formatter();
 
     private final Scanner in;
     private final PrintStream out;
