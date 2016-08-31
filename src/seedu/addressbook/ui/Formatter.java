@@ -37,7 +37,7 @@ public class Formatter {
     }
     
     public String indexedItemFormat() {
-    	return this.LINE_PREFIX;
+    	return this.MESSAGE_INDEXED_LIST_ITEM;
     }
     
     public int indexOffset() {
