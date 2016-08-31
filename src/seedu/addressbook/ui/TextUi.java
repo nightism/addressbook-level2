@@ -18,7 +18,7 @@ import java.util.Scanner;
  */
 public class TextUi {
     
-    private static final Formatter formatting = new Formatter();
+    public static final Formatter formatting = new Formatter();
 
     private final Scanner in;
     private final PrintStream out;
