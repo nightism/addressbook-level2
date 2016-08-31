@@ -24,5 +24,39 @@ public class Formatter {
     /** Format of a comment input line. Comment lines are silently consumed when reading user input. */
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
     
+    public String linePrefix() {
+    	return this.LINE_PREFIX;
+    }
+    
+    public String lineSeperator() {
+    	return this.LS;
+    }
+    
+    public String divider(){
+    	return this.DIVIDER;
+    }
+    
+    public String indexedItemFormat() {
+    	return this.LINE_PREFIX;
+    }
+    
+    public int indexOffset() {
+    	return this.DISPLAYED_INDEX_OFFSET;
+    }
+    
+    public String commentLineFormat() {
+    	return this.COMMENT_LINE_FORMAT_REGEX;
+    }
     
 }
+
+
+
+
+
+
+
+
+
+
+
