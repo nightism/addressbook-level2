@@ -62,6 +62,14 @@ public class Person implements ReadOnlyPerson {
     /**
      * Replaces this person's tags with the tags in the argument tag list.
      */
+    /**
+     * For tutorial 4 Activity 2 
+     * This method cannot be converted to a class-level method
+     * If the method become static, tags should also be static
+     * however, tags attribute will be unique for every single person (instance).
+     * If we set this method and tags as class-level,
+     * everyone in the AddressBook will have the same tag
+     */
     public void setTags(UniqueTagList replacement) {
         tags.setTags(replacement);
     }
