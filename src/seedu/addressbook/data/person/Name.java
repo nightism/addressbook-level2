@@ -71,8 +71,13 @@ public class Name {
     	    	 return true;
       	     } else if(allWorldsInOtherName.containsAll(allWorldsInThisName)){
       	    	 return true;
-      	    	 
       	     }
+    	     
+    	     int ThisNameSize = allWorldsInThisName.size();
+    	     allWorldsInThisName.removeAll(allWorldsInOtherName);
+    	     if(allWorldsInThisName.size() < ThisNameSize) {
+    	    	 return true;
+    	     }
     	 }
     	 return true;
      }

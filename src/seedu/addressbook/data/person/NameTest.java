@@ -80,6 +80,17 @@ public class NameTest {
 		}
 	}
 	
+	@Test
+	public void isSimilar_similarNameContainSomeWordsofThis() {
+		try {
+			assertTrue(name.isSimilar(new Name("Tan JOhN")));
+			assertTrue(name.isSimilar(new Name("watson Kevin")));
+			assertTrue(name.isSimilar(new Name("john K Anderson")));
+		} catch (IllegalValueException e) {
+			fail("new name is invalid");
+		}
+	}
+	
 }
 
 
