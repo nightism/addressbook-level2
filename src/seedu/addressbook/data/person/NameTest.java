@@ -47,6 +47,17 @@ public class NameTest {
 		}
 	}
 	
+	@Test
+	public void isSimilar_sameNameCaseInsensitiveDifferentOrder() {
+		try {
+			assertTrue(name.isSimilar(new Name("WaTsOn JOhN")));
+			assertTrue(name.isSimilar(new Name("watson john")));
+			assertTrue(name.isSimilar(new Name("john WATSON")));
+		} catch (IllegalValueException e) {
+			fail("new name is invalid");
+		}
+	}
+	
 }
 
 

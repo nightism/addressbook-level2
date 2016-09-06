@@ -3,7 +3,9 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Represents a Person's name in the address book.
@@ -50,9 +52,24 @@ public class Name {
      */
      public boolean isSimilar(Name other) {
     	 if(other == null) {
+    		 // other is null
     		 return false;
     	 } else if(other.toString().compareToIgnoreCase(this.toString()) == 0) {
+    		 // other is the same name as this
+    		 // this case is case-insensitive
     		 return true;
+    	 } else {
+    		 // other situations
+    		 String thisName = this.toString().toLowerCase();
+    		 String otherName = other.toString().toLowerCase();
+    		 
+    		 Set<String> allWorldsInThisName = new HashSet<String>(Arrays.asList(thisName.split(" ")));
+    		 Set<String> allWorldsInOtherName = new HashSet<String>(Arrays.asList(otherName.split(" ")));
+    		 
+    	     if(allWorldsInThisName.containsAll(allWorldsInOtherName)) {
+    	    	 // thisName contains all words in otherName
+    	    	 return true;
+      	     }
     	 }
     	 return true;
      }
