@@ -16,12 +16,21 @@ public class NameTest {
 		try {
 			name = new Name("John Watson");	
 		} catch (IllegalValueException e){
-			;
+			fail("set up is invalid");
 		}
 	}
 	
 	@Test
 	public void isSimilar_nullName() {
 		assertFalse(name.isSimilar(null));
+	}
+	
+	@Test
+	public void isSimilar_sameName() {
+		try {
+			assertTrue(name.isSimilar(new Name("John Watson")));
+		} catch (IllegalValueException e) {
+			fail("new name is invalid");
+		}
 	}
 }
