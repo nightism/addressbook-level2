@@ -45,7 +45,7 @@ public class AddressBook {
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
-        taggings = new ArrayList<Tagging>();
+        taggings = Tagging.preprocessExistingTags(persons);
         
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);

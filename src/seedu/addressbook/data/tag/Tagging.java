@@ -1,7 +1,10 @@
 package seedu.addressbook.data.tag;
 
+import java.util.ArrayList;
+
 import seedu.addressbook.data.person.Person;
 import seedu.addressbook.data.person.ReadOnlyPerson;
+import seedu.addressbook.data.person.UniquePersonList;
 
 public class Tagging {
 	
@@ -36,4 +39,29 @@ public class Tagging {
 				+ this.owner.getName().toString() 
 				+ this.tag.toString();
 	}
+	
+	public static ArrayList<Tagging> preprocessExistingTags(UniquePersonList persons) {
+		ArrayList<Tagging> taggings = new ArrayList<Tagging>();
+		for(Person p : persons) {
+			UniqueTagList thisTagList = p.getTags();
+			for(Tag t : thisTagList) {
+				taggings.add(new Tagging(p, t, true));
+			}
+		}
+		return taggings;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
