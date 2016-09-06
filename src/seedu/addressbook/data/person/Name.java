@@ -69,6 +69,9 @@ public class Name {
     	     if(allWorldsInThisName.containsAll(allWorldsInOtherName)) {
     	    	 // thisName contains all words in otherName
     	    	 return true;
+      	     } else if(allWorldsInOtherName.containsAll(allWorldsInThisName)){
+      	    	 return true;
+      	    	 
       	     }
     	 }
     	 return true;

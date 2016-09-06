@@ -69,6 +69,17 @@ public class NameTest {
 		}
 	}
 	
+	@Test
+	public void isSimilar_similarNameContainMoreWords() {
+		try {
+			assertTrue(name.isSimilar(new Name("Tan WaTsOn JOhN")));
+			assertTrue(name.isSimilar(new Name("watson john Kevin")));
+			assertTrue(name.isSimilar(new Name("john K WATSON")));
+		} catch (IllegalValueException e) {
+			fail("new name is invalid");
+		}
+	}
+	
 }
 
 
