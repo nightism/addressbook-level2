@@ -58,6 +58,17 @@ public class NameTest {
 		}
 	}
 	
+	@Test
+	public void isSimilar_similarNameContainSubWords() {
+		try {
+			assertTrue(name.isSimilar(new Name("WaTsOn")));
+			assertTrue(name.isSimilar(new Name("john")));
+			assertTrue(name.isSimilar(new Name("WATSON")));
+		} catch (IllegalValueException e) {
+			fail("new name is invalid");
+		}
+	}
+	
 }
 
 
