@@ -91,6 +91,17 @@ public class NameTest {
 		}
 	}
 	
+	@Test
+	public void isSimilar_absoluteDifferentName() {
+		try {
+			assertFalse(name.isSimilar(new Name("Jim Tan")));
+			assertFalse(name.isSimilar(new Name("Kevin WANG")));
+			assertFalse(name.isSimilar(new Name("Saito Sensei")));
+		} catch (IllegalValueException e) {
+			fail("new name is invalid");
+		}
+	}
+	
 }
 
 
