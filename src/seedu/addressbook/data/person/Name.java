@@ -48,7 +48,7 @@ public class Name implements Printable{
      * Retrieves the person's name.
      */
     public String getPrintableString() {
-    	return "Name: " + this.fullName;
+    	return this.fullName;
     }
 
     @Override
