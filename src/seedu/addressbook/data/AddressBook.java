@@ -5,7 +5,9 @@ import seedu.addressbook.data.person.UniquePersonList.*;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.data.tag.UniqueTagList.*;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -22,6 +24,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private final ArrayList<Tagging> taggings;
 
     /**
      * Creates an empty address book.
@@ -29,6 +32,7 @@ public class AddressBook {
     public AddressBook() {
         allPersons = new UniquePersonList();
         allTags = new UniqueTagList();
+        taggings = new ArrayList<Tagging>();
     }
 
     /**
@@ -41,6 +45,8 @@ public class AddressBook {
     public AddressBook(UniquePersonList persons, UniqueTagList tags) {
         this.allPersons = new UniquePersonList(persons);
         this.allTags = new UniqueTagList(tags);
+        taggings = new ArrayList<Tagging>();
+        
         for (Person p : allPersons) {
             syncTagsWithMasterList(p);
         }
@@ -79,6 +85,11 @@ public class AddressBook {
     public void addPerson(Person toAdd) throws DuplicatePersonException {
         syncTagsWithMasterList(toAdd);
         allPersons.add(toAdd);
+        
+        UniqueTagList tags = toAdd.getTags();
+        for(Tag t : tags) {
+        	this.taggings.add(new Tagging(toAdd, t, true));
+        }
     }
 
     /**
@@ -111,6 +122,16 @@ public class AddressBook {
      */
     public void removePerson(ReadOnlyPerson toRemove) throws PersonNotFoundException {
         allPersons.remove(toRemove);
+        
+        UniqueTagList tags = toRemove.getTags();
+        for(Tag thisTag : tags) {
+        	for(Tagging t : taggings) {
+        		if(t.getTag().toString().equals(toRemove.toString())
+        				&& t.getOwner().getName().equals(toRemove.getName())){
+        			t.reverseStatus();
+        		}
+        	}
+        }
     }
 
     /**
@@ -120,6 +141,12 @@ public class AddressBook {
      */
     public void removeTag(Tag toRemove) throws TagNotFoundException {
         allTags.remove(toRemove);
+        for(Tagging t : taggings) {
+        	if(t.getTag().toString().equals(toRemove.toString())) {
+        		t.reverseStatus();
+        		break;
+        	}
+        }
     }
 
     /**
