@@ -33,4 +33,37 @@ public class NameTest {
 			fail("new name is invalid");
 		}
 	}
+	
+	@Test
+	public void isSimilar_sameNameCaseInsensitive() {
+		try {
+			assertTrue(name.isSimilar(new Name("JOhN WaTsOn")));
+			assertTrue(name.isSimilar(new Name("JohN wAtSOn")));
+			assertTrue(name.isSimilar(new Name("jOHn waTSOn")));
+			assertTrue(name.isSimilar(new Name("john watson")));
+			assertTrue(name.isSimilar(new Name("JOHN WATSON")));
+		} catch (IllegalValueException e) {
+			fail("new name is invalid");
+		}
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
