@@ -51,36 +51,25 @@ public class Name {
      * Two names are considered similar if ...
      */
      public boolean isSimilar(Name other) {
-    	 if(other == null) {
-    		 // other is null
-    		 return false;
-    	 } else if(other.toString().compareToIgnoreCase(this.toString()) == 0) {
-    		 // other is the same name as this
-    		 // this case is case-insensitive
-    		 return true;
-    	 } else {
-    		 // other situations
-    		 String thisName = this.toString().toLowerCase();
-    		 String otherName = other.toString().toLowerCase();
-    		 
-    		 Set<String> allWorldsInThisName = new HashSet<String>(Arrays.asList(thisName.split(" ")));
-    		 Set<String> allWorldsInOtherName = new HashSet<String>(Arrays.asList(otherName.split(" ")));
-    		 
-    	     if(allWorldsInThisName.containsAll(allWorldsInOtherName)) {
-    	    	 // thisName contains all words in otherName
+		if(other == null) {
+			// other is null
+			return false;
+		} else {
+			String thisName = this.toString().toLowerCase();
+			String otherName = other.toString().toLowerCase();
+			
+			Set<String> allWorldsInThisName = new HashSet<String>(Arrays.asList(thisName.split(" ")));
+			Set<String> allWorldsInOtherName = new HashSet<String>(Arrays.asList(otherName.split(" ")));
+      		 
+			if(allWorldsInThisName.containsAll(allWorldsInOtherName)) {
     	    	 return true;
-      	     } else if(allWorldsInOtherName.containsAll(allWorldsInThisName)){
+      	    } else if(allWorldsInOtherName.containsAll(allWorldsInThisName)){
       	    	 return true;
-      	     }
-    	     
-    	     int ThisNameSize = allWorldsInThisName.size();
-    	     allWorldsInThisName.removeAll(allWorldsInOtherName);
-    	     if(allWorldsInThisName.size() < ThisNameSize) {
-    	    	 return true;
-    	     }
-    	 }
-    	 return false;
-     }
+      	    } else {
+      	    	return isOverlapped(allWorldsInThisName, allWorldsInOtherName);
+      	    }
+    	}
+    }
 
     @Override
     public String toString() {
@@ -98,5 +87,19 @@ public class Name {
     public int hashCode() {
         return fullName.hashCode();
     }
+    
+    /**
+	 * Returns true if there is overlap between 2 sets
+	*/
+	private boolean isOverlapped(Set<String> setOne, Set<String> setTwo) {
+		int sizeOfOne = setOne.size();
+		
+		setOne.removeAll(setTwo);
+		if(setOne.size() < sizeOfOne) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }
