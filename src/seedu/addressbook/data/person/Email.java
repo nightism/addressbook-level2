@@ -36,6 +36,13 @@ public class Email {
     public static boolean isValidEmail(String test) {
         return test.matches(EMAIL_VALIDATION_REGEX);
     }
+    
+    /**
+     * Retrieves the person's email.
+     */
+    public String getPrintableString() {
+    	return "Email: " + this.value;
+    }
 
     @Override
     public String toString() {

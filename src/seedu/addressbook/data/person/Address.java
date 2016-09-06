@@ -34,6 +34,13 @@ public class Address {
     public static boolean isValidAddress(String test) {
         return test.matches(ADDRESS_VALIDATION_REGEX);
     }
+    
+    /**
+     * Retrieves the person's address.
+     */
+    public String getPrintableString() {
+    	return "Address: " + this.value;
+    }
 
     @Override
     public String toString() {
