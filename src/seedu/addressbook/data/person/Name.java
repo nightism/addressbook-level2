@@ -50,26 +50,26 @@ public class Name {
      * Returns true of the other name is very similar to this name.
      * Two names are considered similar if ...
      */
-     public boolean isSimilar(Name other) {
-		if(other == null) {
+	public boolean isSimilar(Name other) {
+		if (other == null) {
 			// other is null
 			return false;
 		} else {
 			String thisName = this.toString().toLowerCase();
 			String otherName = other.toString().toLowerCase();
-			
+
 			Set<String> allWorldsInThisName = new HashSet<String>(Arrays.asList(thisName.split(" ")));
 			Set<String> allWorldsInOtherName = new HashSet<String>(Arrays.asList(otherName.split(" ")));
-      		 
-			if(allWorldsInThisName.containsAll(allWorldsInOtherName)) {
-    	    	 return true;
-      	    } else if(allWorldsInOtherName.containsAll(allWorldsInThisName)){
-      	    	 return true;
-      	    } else {
-      	    	return isOverlapped(allWorldsInThisName, allWorldsInOtherName);
-      	    }
-    	}
-    }
+
+			if (allWorldsInThisName.containsAll(allWorldsInOtherName)) {
+				return true;
+			} else if (allWorldsInOtherName.containsAll(allWorldsInThisName)) {
+				return true;
+			} else {
+				return isOverlapped(allWorldsInThisName, allWorldsInOtherName);
+			}
+		}
+	}
 
     @Override
     public String toString() {
@@ -93,9 +93,9 @@ public class Name {
 	*/
 	private boolean isOverlapped(Set<String> setOne, Set<String> setTwo) {
 		int sizeOfOne = setOne.size();
-		
+
 		setOne.removeAll(setTwo);
-		if(setOne.size() < sizeOfOne) {
+		if (setOne.size() < sizeOfOne) {
 			return true;
 		} else {
 			return false;
